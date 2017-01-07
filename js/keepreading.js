@@ -14,7 +14,7 @@ $(() => {
 
         console.log(readingTimeMinutes);
 
-        $('.keepreading__time').html(readingTimeMinutes)
+        $('.keepreading__time').html('Read time ' + readingTimeMinutes + ' minuts!')
     };
 
     initKeepReading();
