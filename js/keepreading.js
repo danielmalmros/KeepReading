@@ -1,20 +1,26 @@
 $(() => {
+
     let initKeepReading = () => {
         keepReading();
     };
 
     let keepReading = () => {
-        let text = $('.keepreading').text();
-        let charsLength = text.length;
-        let wordsCount = text.trim().split(/\s+/g).length;
 
-        let readingTime = wordsCount / 200;
+        let keepReading = $('.keepreading');
 
-        let readingTimeMinutes  = Math.round(readingTime)
+        $.each(keepReading, function(key, val) {
 
-        console.log(readingTimeMinutes);
+            let text = $(this).text();
+            keepReadingTime = $(this).find('.keepreading__time');
+            let charsLength = text.length;
+            let wordsCount = text.trim().split(/\s+/g).length;
+            let readingTime = wordsCount / 200;
+            let readingTimeMinutes = Math.round(readingTime);
 
-        $('.keepreading__time').html('Read time ' + readingTimeMinutes + ' minuts!')
+            $(keepReadingTime).html('Read time ' + (readingTimeMinutes) + ' minuts!');
+
+        });
+
     };
 
     initKeepReading();
