@@ -53,7 +53,7 @@ During development mode, run the default task so you'll have watchers and browse
 
 When project is ready to deploy, simply do the following:
 * Run `deploy-beast.cmd`
-* All of the files you need will be in /dist with your images optimized, css compressed and js compressed!
+* All of the files you need will be in /dist with your css compressed and js compressed!
 
 Update dependencies
 ==========================
