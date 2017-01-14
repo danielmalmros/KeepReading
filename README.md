@@ -1,6 +1,8 @@
 KeepReading
 ==========================
 
+The project is under development, but feel free to use it!
+
 This simple ECMAScript 6 jQuery plugin is inspired by [Medium](https://medium.com/ "Medium") and their estimated reading time calculator.
 
 Keep Reading lets you display an estimated read time on your blog post, article etc. based on an average reading time per minute and text length.
