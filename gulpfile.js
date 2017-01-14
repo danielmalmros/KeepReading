@@ -95,7 +95,7 @@ gulp.task('scripts-deploy', function() {
         // Prevent pipe breaking caused by errors from gulp plugins
         .pipe(plumber())
         // The final filename of our compressed js file
-        .pipe(concat('keepreading.js'))
+        .pipe(concat('keepreading.min.js'))
         // Compress :D
         .pipe(uglify())
         // Where we will store our finalized, compressed script
