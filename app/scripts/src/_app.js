@@ -31,13 +31,17 @@ $(() => {
             let readingTime = wordsCount / averageReadingTime;
             let readingTimeMinutes = Math.round(readingTime);
 
+            // Display total word count.
+            let keepReadingTotalWords = $(this).find('.keepreading__words');
+            $(keepReadingTotalWords).html(wordsCount + ' words');
+
             // Get the descendants of each element in the current set.
             let keepReadingTime = $(this).find('.keepreading__time');
 
             if (readingTimeMinutes > 1) {
 
                 // Add the calculated read time to DOM.
-                $(keepReadingTime).html('Read time ' + (readingTimeMinutes) + ' minuts!');
+                $(keepReadingTime).html('Read time ' + readingTimeMinutes + ' minuts!');
 
             } else {
 

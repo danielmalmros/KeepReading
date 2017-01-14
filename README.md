@@ -12,7 +12,28 @@ Keep Reading lets you display an estimated read time on your blog post, article 
 Instructions
 ==========================
 
-Include jQuery and the plugin in the head or footer of your page.
+To use the plugin you must include the latest jQuery and the plugin in the head or footer of your page.
+
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="/path/keepreading.js"></script>
+```
+
+The plugin is pretty simple to use, all you have to do is to create an element with the following class of 'keepreading'. Now the plugin will calculate what the estimated reading time will be.
+
+```
+<article class="keepreading"></article>
+```
+
+To show the estimated read time and how many words the block of text contains use 'keepreading__time' for read time and 'keepreading__words' to display words.
+
+```
+<article class="keepreading">
+    <h5 class="keepreading__time"></h5>
+    <span class="keepreading__words"></span>
+</article>
+```
 
 Lunch project
 ==========================
@@ -39,11 +60,11 @@ In order to ensure that all dependencies are updated use:
 
 https://www.npmjs.org/package/npm-check-updates
 
-$ `npm install -g npm-check-updates`
+`$ npm install -g npm-check-updates`
 
-$ `npm-check-updates -u`
+`$ npm-check-updates -u`
 
-$ `npm install`
+`$ npm install`
 
 This will automatically adjusts a package.json with the latest version of all dependencies!
 
