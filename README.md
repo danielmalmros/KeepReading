@@ -14,12 +14,12 @@ Instructions
 
 To use the plugin you must include the latest jQuery and the plugin in the head or footer of your page.
 
-Use `keepreading.min.js` from dist folder.
+Use 'keepreading.min.js' from dist folder.
 
 ```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<script src="/path/keepreading.js"></script>
+<script src="/path/keepreading.min.js"></script>
 ```
 
 The plugin is pretty simple to use, all you have to do is to create an element with the following class of 'keepreading'. Now the plugin will calculate what the estimated reading time will be.
