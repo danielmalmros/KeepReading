@@ -1,0 +1,10 @@
+{
+  "esversion": 6,
+  "globals": {
+        "$": false,
+        "jQuery": false,
+        "fetch": false,
+        "console": false,
+        "chrome": false
+    }
+}

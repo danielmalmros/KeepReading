@@ -1,0 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
+
+body {
+    font-family: 'Raleway', 'Open Sans', sans-serif;
+    color: #2a2a2a;
+}
+
+article {
+    width: 100%;
+    max-width: 740px;
+    margin: 0 auto;
+
+    h1 {
+        font-size: 32px;
+        margin: 10px 0;
+    }
+
+    h5 {
+        font-size: 16px;
+        font-style: italic;
+        margin: 0 0 20px 0;
+    }
+}
