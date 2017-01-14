@@ -1,3 +1,12 @@
+/*!
+ * KeepReading
+ * Copyright (c) Daniel Malmros
+ * <daniel@bymalmros.dk>
+ * MIT Licensed
+ */
+
+'use strict'
+
 $(() => {
 
     let initKeepReading = () => {
@@ -12,7 +21,7 @@ $(() => {
         // Store the average reading time.
         let averageReadingTime = 200;
 
-        // loop through each element that has the class '.keepreading'.
+        // Loop through each element that has the class '.keepreading'.
         $.each(keepReading, function(key, val) {
 
             // Calculate each text block.
@@ -23,11 +32,19 @@ $(() => {
             let readingTimeMinutes = Math.round(readingTime);
 
             // Get the descendants of each element in the current set.
-            keepReadingTime = $(this).find('.keepreading__time');
+            let keepReadingTime = $(this).find('.keepreading__time');
 
-            // Add the calculated read time to DOM.
-            $(keepReadingTime).html('Read time ' + (readingTimeMinutes) + ' minuts!');
+            if (readingTimeMinutes > 1) {
 
+                // Add the calculated read time to DOM.
+                $(keepReadingTime).html('Read time ' + (readingTimeMinutes) + ' minuts!');
+
+            } else {
+
+                // Display new message if it's less than a minute.
+                $(keepReadingTime).html('Read time is less than a minute!');
+
+            }
         });
     };
 
