@@ -12,7 +12,7 @@ Keep Reading is a lightweight jQuery plugin that lets you display an estimated r
 Instructions
 ==========================
 
-To use the plugin you must include the latest jQuery and the plugin in the head or footer of your page.
+To use the plugin you must include the latest jQuery and the plugin in the head or footer of your page (use keepreading.js from dist folder). 
 
 ```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
