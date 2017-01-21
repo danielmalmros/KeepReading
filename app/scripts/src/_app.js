@@ -2,13 +2,16 @@
  * KeepReading
  * Copyright (c) Daniel Malmros
  * <daniel@bymalmros.dk>
+ * Created: Januar 03, 2017
+ * Updated: NaN
  * MIT Licensed
- */
+*/
 
 'use strict'
 
 $(() => {
 
+    // Init plugin
     let initKeepReading = () => {
         keepReading();
     };
@@ -37,6 +40,24 @@ $(() => {
 
             // Get the descendants of each element in the current set.
             let keepReadingTime = $(this).find('.keepreading__time');
+
+            //
+            let remote = $(this).find('.keepreading__time-remote');
+
+            if (remote) {
+
+                // Store remote hole remote file.
+                let storeRemote;
+
+                $.get("remote.html", (response) => {
+                    storeRemote = response;
+                    console.log(storeRemote);
+                });
+
+
+            } else {
+                console.log('Dude please debug me..');
+            }
 
             if (readingTimeMinutes > 1) {
 
