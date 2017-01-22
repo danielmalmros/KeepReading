@@ -5,7 +5,7 @@
  * Created: Januar 03, 2017
  * Updated: NaN
  * MIT Licensed
-*/
+ */
 
 'use strict'
 
@@ -41,24 +41,28 @@ $(() => {
             // Get the descendants of each element in the current set.
             let keepReadingTime = $(this).find('.keepreading__time');
 
-            //
+            // Find remote tag.
             let remote = $(this).find('.keepreading__time-remote');
 
+            // If remote exists then fire async.
             if (remote) {
 
-                // Store remote hole remote file.
-                let storeRemote;
-
                 $.get("remote.html", (response) => {
-                    storeRemote = response;
-                    console.log(storeRemote);
+                    storeRemote(response);
                 });
 
+                let storeRemote = (test) => {
+                    let remoteBlock = $(test).find('.keepreading__time');
+                    console.log(remoteBlock.length);
+
+                    $(remote).html('Read time ' + readingTimeMinutes + ' minuts!');
+                }
 
             } else {
-                console.log('Dude please debug me..');
+                console.log('No remote files');
             }
 
+            // If reading time is greater than 1, show read time.
             if (readingTimeMinutes > 1) {
 
                 // Add the calculated read time to DOM.
