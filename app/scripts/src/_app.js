@@ -41,27 +41,6 @@ $(() => {
             // Get the descendants of each element in the current set.
             let keepReadingTime = $(this).find('.keepreading__time');
 
-            // Find remote tag.
-            let remote = $(this).find('.keepreading__time-remote');
-
-            // If remote exists then fire async.
-            if (remote) {
-
-                $.get("remote.html", (response) => {
-                    storeRemote(response);
-                });
-
-                let storeRemote = (test) => {
-                    let remoteBlock = $(test).find('.keepreading__time');
-                    console.log(remoteBlock.length);
-
-                    $(remote).html('Read time ' + readingTimeMinutes + ' minuts!');
-                }
-
-            } else {
-                console.log('No remote files');
-            }
-
             // If reading time is greater than 1, show read time.
             if (readingTimeMinutes > 1) {
 
@@ -74,6 +53,28 @@ $(() => {
                 $(keepReadingTime).html('Read time is less than a minute!');
 
             }
+
+            // Find remote tag.
+            let remote = $('.keepreading__time-remote');
+            console.log(remote);
+            // If remote exists then fire async.
+            if (remote) {
+
+                $.get("remote.html", (response) => {
+                    storeRemote(response);
+                });
+
+                let storeRemote = (remoteHtml) => {
+                    let test = $(remoteHtml).find('.remote-file');
+
+                    $(remote).html('Read time ' + test + ' minuts!');
+                }
+
+
+            } else {
+                console.log('No remote files');
+            }
+
         });
     };
 
