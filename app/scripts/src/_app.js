@@ -54,20 +54,15 @@ $(() => {
 
             }
 
-            // Find remote tag.
-            let remote = $('.keepreading__time-remote');
-            console.log(remote);
             // If remote exists then fire async.
-            if (remote) {
+            if ($('article').hasClass('keepreading-remote')) {
 
                 $.get("remote.html", (response) => {
                     storeRemote(response);
                 });
 
                 let storeRemote = (remoteHtml) => {
-                    let test = $(remoteHtml).find('.remote-file');
-
-                    $(remote).html('Read time ' + test + ' minuts!');
+                    console.log(remoteHtml);
                 }
 
 
