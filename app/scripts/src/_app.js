@@ -7,6 +7,8 @@
  * MIT Licensed
  */
 
+
+
 'use strict'
 
 $(() => {
@@ -20,6 +22,16 @@ $(() => {
 
         // Store text block class.
         let keepReading = $('.keepreading');
+
+        // Remote file
+        $.get("remote.html", (response) => {
+            storeRemote(response);
+        });
+
+        let storeRemote = (remoteHtml) => {
+            let remoteKeepReading = $(this).find('.keepreading');
+            console.log(remoteKeepReading);
+        };
 
         // Store the average reading time.
         let averageReadingTime = 200;
@@ -57,13 +69,6 @@ $(() => {
             // If remote exists then fire async.
             if ($('article').hasClass('keepreading-remote')) {
 
-                $.get("remote.html", (response) => {
-                    storeRemote(response);
-                });
-
-                let storeRemote = (remoteHtml) => {
-                    console.log(remoteHtml);
-                }
 
 
             } else {
