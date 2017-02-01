@@ -26,17 +26,6 @@ $(() => {
             averageReadingTime: 200
         };
 
-        // Get remote file.
-        $.get(config.keepReadingRemotePath, (response) => {
-            storeRemote(response);
-        });
-
-        // Callback on remote data.
-        let storeRemote = (remoteText) => {
-            let remoteKeepReading = $('<div>').html(remoteText).find(config.keepReadingRemoteTarget).text();
-            console.log(remoteKeepReading);
-        };
-
         // If keepReading is not null then fire function.
         if (config.keepReading !== null) {
 
@@ -76,43 +65,55 @@ $(() => {
             console.log('GO!');
         }
 
-        // If remote exists then fire async.
-        if (config.keepReadingRemoteTarget !== null) {
-            // Loop through each element that has the class '.keepreading'.
-            $.each(config.keepReadingRemoteTarget, function(key, val) {
+        // Get remote file.
+        $.get(config.keepReadingRemotePath, (response) => {
+            storeRemote(response);
+        });
 
-                // Calculate each text block.
-                let keepReadingText = $(this).text();
-                let charsLength = keepReadingText.length;
-                let wordsCount = keepReadingText.trim().split(/\s+/g).length;
-                let readingTime = wordsCount / config.averageReadingTime;
-                let readingTimeMinutes = Math.round(readingTime);
+        // Callback on remote data.
+        let storeRemote = (remoteText) => {
+            let remoteKeepReading = $('<div>').html(remoteText).find(config.keepReadingRemoteTarget);
+            // console.log(remoteKeepReading);
 
-                // Display total word count.
-                let keepReadingTotalWords = $(this).find('.keepreading__words');
-                $(keepReadingTotalWords).html(wordsCount + ' words');
+            // If remote exists then fire async.
+            if (config.keepReadingRemoteTarget !== null) {
+                // Loop through each element that has the class '.keepreading'.
+                $.each(remoteKeepReading, function(key, val) {
 
-                // Get the descendants of each element in the current set.
-                let keepReadingTime = $(this).find('.keepreading__time');
+                    // Calculate each text block.
+                    let keepReadingText = $(this).text();
+                    let charsLength = keepReadingText.length;
+                    let wordsCount = keepReadingText.trim().split(/\s+/g).length;
+                    let readingTime = wordsCount / config.averageReadingTime;
+                    let readingTimeMinutes = Math.round(readingTime);
 
-                // If reading time is greater than 1, show read time.
-                if (readingTimeMinutes > 1) {
+                    // Display total word count.
+                    let keepReadingTotalWords = $('.keepreading').find('.keepreading__words-remote');
+                    $(keepReadingTotalWords).html(wordsCount + ' words');
 
-                    // Add the calculated read time to DOM.
-                    $(keepReadingTime).html('Read time ' + readingTimeMinutes + ' minuts!');
+                    // Get the descendants of each element in the current set.
+                    let keepReadingTime = $('.keepreading').find('.keepreading__time-remote');
 
-                } else {
+                    // If reading time is greater than 1, show read time.
+                    if (readingTimeMinutes > 1) {
 
-                    // Display new message if it's less than a minute.
-                    $(keepReadingTime).html('Read time is less than a minute!');
+                        // Add the calculated read time to DOM.
+                        $(keepReadingTime).html('Read time ' + readingTimeMinutes + ' minuts!');
 
-                }
+                    } else {
 
-            });
+                        // Display new message if it's less than a minute.
+                        $(keepReadingTime).html('Read time is less than a minute!');
 
-        } else {
-            console.log('GO!');
-        }
+                    }
+
+                });
+
+            } else {
+                console.log('GO!');
+            }
+
+        };
 
     };
 
