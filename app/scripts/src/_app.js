@@ -13,6 +13,11 @@ $(() => {
 
     $.fn.keepReading = (options) => {
 
+        // Global scoped objects
+        let keepReadingText,
+            wordsCount,
+            readingTimeMinutes;
+
         // Global config settings for keepReading.
         let config = {
                 keepReading: null,
@@ -30,7 +35,13 @@ $(() => {
         // Define the settings as element.
         let element = settings;
 
-        console.log(element.keepReadingRemotePath);
+        // Calculate numbers of words and readtime.
+        let storeCalculation = (option) => {
+            keepReadingText = $(option).text();
+            wordsCount = keepReadingText.trim().split(/\s+/g).length;
+            let readingTime = wordsCount / element.averageReadingTime;
+            readingTimeMinutes = Math.round(readingTime);
+        }
 
         // If keepReading is not null then fire function.
         if (element.keepReading !== null) {
@@ -40,17 +51,13 @@ $(() => {
 
                 let el = val;
 
-                // Calculate each text block.
-                let keepReadingText = $(el).text();
-                let charsLength = keepReadingText.length;
-                let wordsCount = keepReadingText.trim().split(/\s+/g).length;
-                let readingTime = wordsCount / element.averageReadingTime;
-                let readingTimeMinutes = Math.round(readingTime);
+                storeCalculation(el);
 
                 // Display total word count.
                 if (element.keepReadingWordCount === true) {
                     let keepReadingTotalWords = $(el).find('.keepreading__words');
                     $(keepReadingTotalWords).html(wordsCount + ' words');
+                    console.log(wordsCount);
                 } else {
                     console.log('Word count display not on!');
                     element.error.call(this);
@@ -78,7 +85,6 @@ $(() => {
             console.log('Current blog not active!');
         }
 
-
         $.each(element.keepReading, () => {
 
             if (element.keepReadingRemoteTarget !== null) {
@@ -94,38 +100,38 @@ $(() => {
 
                     // If remote exists then fire async.
                     if (element.keepReadingRemoteTarget !== null) {
-                            let el = element.keepReading;
+                        let el = element.keepReading;
 
-                            // Calculate each text block.
-                            let keepReadingText = $(el).text();
-                            let charsLength = keepReadingText.length;
-                            let wordsCount = keepReadingText.trim().split(/\s+/g).length;
-                            let readingTime = wordsCount / element.averageReadingTime;
-                            let readingTimeMinutes = Math.round(readingTime);
+                        // Calculate each text block.
+                        let keepReadingText = $(el).text();
+                        let charsLength = keepReadingText.length;
+                        let wordsCount = keepReadingText.trim().split(/\s+/g).length;
+                        let readingTime = wordsCount / element.averageReadingTime;
+                        let readingTimeMinutes = Math.round(readingTime);
 
-                            // Display total word count.
-                            if (element.keepReadingWordCount === true) {
-                                let keepReadingTotalWords = $('.keepreading').find('.keepreading__words-remote');
-                                $(keepReadingTotalWords).html(wordsCount + ' words');
-                            } else {
-                                console.log('Word count display not on!');
-                            }
+                        // Display total word count.
+                        if (element.keepReadingWordCount === true) {
+                            let keepReadingTotalWords = $('.keepreading').find('.keepreading__words-remote');
+                            $(keepReadingTotalWords).html(wordsCount + ' words');
+                        } else {
+                            console.log('Word count display not on!');
+                        }
 
-                            // Get the descendants of each element in the current set.
-                            let keepReadingTime = $('.keepreading').find('.keepreading__time-remote');
+                        // Get the descendants of each element in the current set.
+                        let keepReadingTime = $('.keepreading').find('.keepreading__time-remote');
 
-                            // If reading time is greater than 1, show read time.
-                            if (readingTimeMinutes > 1) {
+                        // If reading time is greater than 1, show read time.
+                        if (readingTimeMinutes > 1) {
 
-                                // Add the calculated read time to DOM.
-                                $(keepReadingTime).html('Read time ' + readingTimeMinutes + ' minuts!');
+                            // Add the calculated read time to DOM.
+                            $(keepReadingTime).html('Read time ' + readingTimeMinutes + ' minuts!');
 
-                            } else {
+                        } else {
 
-                                // Display new message if it's less than a minute.
-                                $(keepReadingTime).html('Read time is less than a minute!');
+                            // Display new message if it's less than a minute.
+                            $(keepReadingTime).html('Read time is less than a minute!');
 
-                            }
+                        }
 
                     } else {
                         console.log('Current remote blog not active!');
