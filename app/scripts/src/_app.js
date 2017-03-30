@@ -104,7 +104,7 @@ $(() => {
 
                     // Callback on remote data.
                     let storeRemote = (remoteText) => {
-                        remoteKeepReading = $('<div>').html(remoteText).find('.keepreading')
+                        remoteKeepReading = $('<div>').html(remoteText).find('.keepreading p')
 
                         storeCalculation(remoteKeepReading);
 
@@ -129,8 +129,18 @@ $(() => {
                             // Display new message if it's less than a minute.
                             $(keepReadingTime).html('Read time is less than a minute!');
                         }
+
+                        let fullRemoteText = remoteKeepReading.text(),
+                            previewText = fullRemoteText.substr(0, 800);
+
+                        let block = $(e).find('a');
+                        block.before('<p>' + previewText + '...' + '<p>')
                     }
                 })
+            },
+
+            appendPreview = () => {
+
             },
 
             getKeepReadingRemoteTime = () => {
@@ -151,6 +161,7 @@ $(() => {
                 getKeepReadingRemote();
                 getKeepReadingRemoteTime();
                 getKeepReadingRemoteWords();
+                appendPreview();
             };
 
         init();
