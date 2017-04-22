@@ -104,7 +104,8 @@ $(() => {
 
                     // Callback on remote data.
                     let storeRemote = (remoteText) => {
-                        remoteKeepReading = $('<div>').html(remoteText).find('.keepreading p')
+
+                        remoteKeepReading = $('<div>').html(remoteText).find('.keepreading')
 
                         storeCalculation(remoteKeepReading);
 
@@ -130,11 +131,12 @@ $(() => {
                             $(keepReadingTime).html('Read time is less than a minute!');
                         }
 
-                        let fullRemoteText = remoteKeepReading.text(),
-                            previewText = fullRemoteText.substr(0, 800);
+                        // let fullRemoteText = remoteKeepReading.text(),
+                        //     previewText = fullRemoteText.substr(0, 800);
 
+                        let fullRemoteText = remoteKeepReading.html();
                         let block = $(e).find('a');
-                        block.before('<p>' + previewText + '...' + '<p>')
+                        block.before('<p>' + fullRemoteText + '...' + '<p>')
                     }
                 })
             },
@@ -147,8 +149,6 @@ $(() => {
                 $(element.keepReadingPreview).each((i, e) => {
 
                     let el = e;
-
-
                 })
             },
 
