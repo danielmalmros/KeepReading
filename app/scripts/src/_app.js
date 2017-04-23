@@ -23,6 +23,7 @@ $(() => {
         let config = {
                 keepReading: null,
                 keepReadingPreview: null,
+                keepReadingHeading: null,
                 keepReadingRemoteTarget: null,
                 keepReadingRemotePath: null,
                 keepReadingWordCount: true,
@@ -36,6 +37,8 @@ $(() => {
 
         // Define the settings as element.
         let element = settings;
+        console.log(element.keepReadingHeading);
+
 
         let module = {},
 
@@ -105,7 +108,10 @@ $(() => {
                     // Callback on remote data.
                     let storeRemote = (remoteText) => {
 
-                        remoteKeepReading = $('<div>').html(remoteText).find('.keepreading')
+                        remoteKeepReading = $('<div>').html(remoteText).find('.keepreading p')
+
+                        // Remote heading TODO: Refactor the way it's appended to preview!
+                        let remoteHeading = $('<div>').html(remoteText).find('.keepreading h1')
 
                         storeCalculation(remoteKeepReading);
 
@@ -131,12 +137,11 @@ $(() => {
                             $(keepReadingTime).html('Read time is less than a minute!');
                         }
 
-                        // let fullRemoteText = remoteKeepReading.text(),
-                        //     previewText = fullRemoteText.substr(0, 800);
-
                         let fullRemoteText = remoteKeepReading.html();
-                        let block = $(e).find('a');
-                        block.before('<p>' + fullRemoteText + '...' + '<p>')
+                        let block = $(e)
+                        block.prepend(remoteHeading)
+                        block.append('<p>' + fullRemoteText + '...' + '<p>');
+                        block.append('<a href="'+ getRemotePath +'">Read more</a>');
                     }
                 })
             },
