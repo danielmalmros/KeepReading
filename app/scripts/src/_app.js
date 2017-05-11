@@ -39,7 +39,6 @@ $(() => {
         let element = settings;
         console.log(element.keepReadingHeading);
 
-
         let module = {},
 
             // Calculate numbers of words and readtime.
