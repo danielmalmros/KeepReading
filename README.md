@@ -5,7 +5,7 @@ The project is under development, but feel free to use it!
 
 This simple ECMAScript 6 jQuery plugin is inspired by [Medium](https://medium.com/ "Medium") and their estimated reading time calculator.
 
-Keep Reading is a lightweight jQuery plugin that lets you display an estimated read time on your blog post, article etc. based on an average reading time per minute and text length.
+KeepReading is a lightweight jQuery plugin that lets you display an estimated read time on your blog post, article etc. based on an average reading time per minute and text length.
 
 * [See a demo](https://keepreading-6a1d7.firebaseapp.com "Demo page!")
 
@@ -46,13 +46,13 @@ You'll need to have Gulp installed. If you already have Gulp installed, you can 
 To install gulp simply run the following line in your terminal:
 * `npm install -g gulp`
 
-* Run `npm-install.cmd` to install dev dependencies. On mac fire up terminal and type `npm install` use sudo if needed.
+* Run `npm-install` to install dev dependencies.
 
 During development mode, run the default task so you'll have watchers and browser sync.
-* Run `start-beast.cmd` to set fire on this beast!
+* Run `gulp` to start project.
 
 When project is ready to deploy, simply do the following:
-* Run `deploy-beast.cmd`
+* Run `gulp deploy`
 * All of the files you need will be in /dist with your css compressed and js compressed!
 
 Update dependencies

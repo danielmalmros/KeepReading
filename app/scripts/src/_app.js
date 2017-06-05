@@ -7,6 +7,13 @@
  * MIT Licensed
  */
 
+/*
+    TODO:
+     - Replace all static markup text to be dynamic in options!
+     - Add lix calculator to measure readability by indicating the difficulty of reading the text!
+     - Make it possible to add custom class name on the appended read more btn!
+*/
+
 'use strict'
 
 $(() => {
@@ -27,6 +34,8 @@ $(() => {
                 keepReadingRemoteTarget: null,
                 keepReadingRemotePath: null,
                 keepReadingWordCount: true,
+                keepReadingWords: null,
+                lessThanAMinuteMessage: null,
                 averageReadingTime: 240, // wpm (words per minute).
                 success: () => {},
                 error: () => {}
@@ -37,7 +46,6 @@ $(() => {
 
         // Define the settings as element.
         let element = settings;
-        console.log(element.keepReadingHeading);
 
         let module = {},
 
@@ -50,22 +58,21 @@ $(() => {
             },
 
             getKeepReading = () => {
-                $(element.keepReading).each((i, e) => {
-                    let el = e;
+                $(element.keepReading).each((i, el) => {
+
+                    let wordEl = $(el).find('p')
 
                     // If keepReading is not null then fire function.
                     if (element.keepReading !== null) {
 
-                        storeCalculation(el);
+                        storeCalculation(wordEl);
 
                         // Display total word count.
                         if (element.keepReadingWordCount === true) {
                             let keepReadingTotalWords = $(el).find('.keepreading__words');
-                            $(keepReadingTotalWords).html(wordsCount + ' words');
-                            console.log(wordsCount);
+                            $(keepReadingTotalWords).html(wordsCount + element.keepReadingWords);
                         } else {
-                            console.log('Word count display not on!');
-                            element.error.call(this);
+                            console.log('Word count display is not on!');
                         }
 
                         // Get the descendants of each element in the current set.
@@ -80,22 +87,16 @@ $(() => {
                         } else {
 
                             // Display new message if it's less than a minute.
-                            $(keepReadingTime).html('Read time is less than a minute!');
+                            $(keepReadingTime).html(element.lessThanAMinuteMessage);
 
                         }
-
-                    } else {
-                        // Display new message if it's less than a minute.
-                        $(keepReadingTime).html('Read time is less than a minute!');
                     }
                 })
             },
 
             getKeepReadingRemote = () => {
 
-                $(element.keepReadingPreview).each((i, e) => {
-                    let el = e;
-                    console.log(el);
+                $(element.keepReadingPreview).each((i, el) => {
 
                     let getRemotePath = $(el).data('file')
 
@@ -110,16 +111,16 @@ $(() => {
                         remoteKeepReading = $('<div>').html(remoteText).find('.keepreading p')
 
                         // Remote heading TODO: Refactor the way it's appended to preview!
-                        let remoteHeading = $('<div>').html(remoteText).find('.keepreading h1')
+                        let remoteHeading = $('<div>').html(remoteText).find('.keepreading h2')
 
                         storeCalculation(remoteKeepReading);
 
                         // Display total word count.
                         if (element.keepReadingWordCount === true) {
                             let keepReadingTotalWords = $(el).find('.keepreading__words-remote');
-                            $(keepReadingTotalWords).html(wordsCount + ' words');
+                            $(keepReadingTotalWords).html(wordsCount + element.keepReadingWords);
                         } else {
-                            console.log('Word count display not on!');
+                            console.log('Word count display is not on!');
                         }
 
                         // Get the descendants of each element in the current set.
@@ -133,39 +134,21 @@ $(() => {
 
                         } else {
                             // Display new message if it's less than a minute.
-                            $(keepReadingTime).html('Read time is less than a minute!');
+                            $(keepReadingTime).html(element.lessThanAMinuteMessage);
                         }
 
                         let fullRemoteText = remoteKeepReading.html();
-                        let block = $(e)
+                        let block = $(el)
                         block.prepend(remoteHeading)
                         block.append('<p>' + fullRemoteText + '...' + '<p>');
-                        block.append('<a href="'+ getRemotePath +'">Read more</a>');
+                        block.append('<a href="' + getRemotePath + '">Read more</a>');
                     }
                 })
-            },
-
-            appendPreview = () => {
-
-            },
-
-            getKeepReadingRemoteTime = () => {
-                $(element.keepReadingPreview).each((i, e) => {
-
-                    let el = e;
-                })
-            },
-
-            getKeepReadingRemoteWords = () => {
-
             },
 
             init = () => {
                 getKeepReading();
                 getKeepReadingRemote();
-                getKeepReadingRemoteTime();
-                getKeepReadingRemoteWords();
-                appendPreview();
             };
 
         init();
