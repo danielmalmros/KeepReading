@@ -30,7 +30,6 @@ $(() => {
         let config = {
                 keepReading: null,
                 keepReadingPreview: null,
-                keepReadingHeading: null,
                 keepReadingRemote: null,
                 keepReadingWordCount: true,
                 keepReadingWords: null,
@@ -116,7 +115,7 @@ $(() => {
                             storeCalculation(remoteKeepReading);
 
                             // Remote heading TODO: Refactor the way it's appended to preview!
-                            let remoteHeading = $('<div>').html(remoteText).find('.keepreading h2')
+                            let remoteHeading = $('<div>').html(remoteText).find(element.keepReadingHeading)
 
                             // Display total word count.
                             if (element.keepReadingWordCount === true) {
