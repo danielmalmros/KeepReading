@@ -12,7 +12,7 @@ KeepReading is a lightweight jQuery plugin that lets you display an estimated re
 Instructions
 ==========================
 
-###### Basic use
+## Basic use
 
 To use the plugin you must include the latest jQuery and the plugin in the head or footer of your page.
 
@@ -52,7 +52,7 @@ $().keepReading({
 });
 ```
 
-###### Remote/multiple remote files use
+## Remote/multiple remote files use
 
 You have the ability to use remote files and show a preview of the text with an estimated reading time and how many words the remote file contains along with a read more button that wil be appended.
 
