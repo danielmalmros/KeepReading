@@ -7,7 +7,7 @@ This simple ECMAScript 6 jQuery plugin is inspired by [Medium](https://medium.co
 
 KeepReading is a lightweight jQuery plugin that lets you display an estimated read time on your blog post, article etc. based on an average reading time per minute and text length.
 
-* [See a demo](https://keepreading-6a1d7.firebaseapp.com "Demo page!")
+* [See a demo](https://danielmalmros.github.io/keep-reading/ "Demo page!")
 
 Instructions
 ==========================
@@ -39,7 +39,7 @@ To show the estimated read time and how many words the block of text contains us
 </article>
 ```
 
-With the above markup and the options below, you will be able to estimate the reading time and how many words the text contains. Please see the [demo](https://keepreading-6a1d7.firebaseapp.com "Demo page!"). *(Note: AverageReadingTime option is based on an average reader)*
+With the above markup and the options below, you will be able to estimate the reading time and how many words the text contains. Please see the [demo](https://danielmalmros.github.io/keep-reading/ "Demo page!"). *(Note: AverageReadingTime option is based on an average reader)*
 
 ```
 $().keepReading({
