@@ -103,7 +103,7 @@ $(() => {
                         let getRemotePath = $(el).data('file')
 
                         // Get remote file.
-                        $.get(getRemotePath, (response) => {
+                        $.get(getRemotePath + '&callback=?', (response) => {
                             storeRemote(response);
                         });
 
